@@ -68,12 +68,31 @@ def normalize_context_batch(face_context: Any, expected: int) -> list[dict[str, 
     return contexts
 
 
-def combine_reference_batches(*references) -> torch.Tensor | None:
+def _resize_image_batch(batch: torch.Tensor, target_size: tuple[int, int]) -> torch.Tensor:
+    target_h, target_w = target_size
+    if target_h <= 0 or target_w <= 0:
+        return batch
+    if batch.shape[1] == target_h and batch.shape[2] == target_w:
+        return batch
+    nchw = batch.permute(0, 3, 1, 2)
+    resized = torch.nn.functional.interpolate(
+        nchw,
+        size=(target_h, target_w),
+        mode="bicubic",
+        align_corners=False,
+    )
+    return resized.permute(0, 2, 3, 1).contiguous().clamp(0.0, 1.0)
+
+
+def combine_reference_batches(*references, target_size: tuple[int, int] | None = None) -> torch.Tensor | None:
     batches: list[torch.Tensor] = []
     for reference in references:
         if reference is None:
             continue
-        batches.append(ensure_image_batch(reference).to(dtype=torch.float32))
+        batch = ensure_image_batch(reference).to(dtype=torch.float32)
+        if target_size is not None:
+            batch = _resize_image_batch(batch, target_size)
+        batches.append(batch)
     if not batches:
         return None
     return torch.cat(batches, dim=0)

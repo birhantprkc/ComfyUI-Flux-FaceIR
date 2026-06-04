@@ -55,7 +55,12 @@ class FluxFaceIRRestoreFace:
         reference_image_3=None,
     ):
         face_batch = ensure_image_batch(face_image)
-        reference_batch = combine_reference_batches(reference_image_1, reference_image_2, reference_image_3)
+        reference_batch = combine_reference_batches(
+            reference_image_1,
+            reference_image_2,
+            reference_image_3,
+            target_size=(int(resolution), int(resolution)),
+        )
         outputs = []
         for index in range(face_batch.shape[0]):
             restored = restore_face(
