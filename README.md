@@ -44,8 +44,7 @@ Whole-image workflow:
 
 ### ComfyUI Manager / Registry
 
-After the first Registry release is published, search for **Flux FaceIR** in
-ComfyUI Manager, or install it with the Comfy CLI:
+Search for **Flux FaceIR** in ComfyUI Manager, or install it with the Comfy CLI:
 
 ```bash
 comfy node install flux-faceir
