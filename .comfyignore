@@ -1,0 +1,20 @@
+# Version-control and CI files are not needed at runtime.
+.git/
+.github/
+
+# Development-only files.
+tests/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Generated Python and OS metadata.
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Local-only sample inputs and model weights. The workflow screenshots and
+# template thumbnails remain part of the Registry package.
+assets/images/
+weights/

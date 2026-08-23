@@ -42,6 +42,21 @@ Whole-image workflow:
 
 ## Installation
 
+### ComfyUI Manager / Registry
+
+After the first Registry release is published, search for **Flux FaceIR** in
+ComfyUI Manager, or install it with the Comfy CLI:
+
+```bash
+comfy node install flux-faceir
+```
+
+The two bundled workflows will then be available from ComfyUI's workflow
+template browser. Model weights are installed separately; see
+[Required Models](#required-models).
+
+### Manual installation
+
 Clone this repository into `ComfyUI/custom_nodes`, then install dependencies:
 
 ```bash

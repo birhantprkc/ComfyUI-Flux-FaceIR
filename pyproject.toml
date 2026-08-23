@@ -1,6 +1,46 @@
 [project]
-name = "comfyui-flux-faceir"
+name = "flux-faceir"
 version = "0.1.0"
 description = "ComfyUI extension for FLUX FaceIR aligned-face and whole-image restoration."
 readme = "README.md"
 requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "cosmicrealm" },
+]
+keywords = [
+  "comfyui",
+  "face-restoration",
+  "flux",
+  "identity-preservation",
+  "reference-guided-restoration",
+]
+dependencies = [
+  "torch>=2.1",
+  "torchvision>=0.16",
+  "transformers>=4.39",
+  "safetensors>=0.4",
+  "einops>=0.7",
+  "Pillow>=10",
+  "opencv-python>=4.8",
+  "huggingface_hub>=0.24",
+  "tqdm>=4.66",
+]
+
+[project.urls]
+Repository = "https://github.com/cosmicrealm/ComfyUI-Flux-FaceIR"
+BugTracker = "https://github.com/cosmicrealm/ComfyUI-Flux-FaceIR/issues"
+Documentation = "https://github.com/cosmicrealm/ComfyUI-Flux-FaceIR#readme"
+
+[tool.comfy]
+PublisherId = "cosmicrealm"
+DisplayName = "Flux FaceIR"
+Icon = ""
+Tags = [
+  "face-restoration",
+  "flux",
+  "identity-preservation",
+  "reference-guided",
+]
+Repository = "https://github.com/cosmicrealm/ComfyUI-Flux-FaceIR"
+includes = ["web", "workflows"]
